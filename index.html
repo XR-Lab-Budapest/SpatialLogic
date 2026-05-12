@@ -10,8 +10,10 @@
             --bg-color: #ffffff;
             --text-main: #111111;
             --text-muted: #666666;
-            --border-color: #eaeaea;
-            --accent-bg: #f5f5f5;
+            --border-color: #f0f0f0;
+            --accent-bg: #fcfcfc;
+            --soft-shadow: 0 10px 30px rgba(0,0,0,0.04), 0 1px 8px rgba(0,0,0,0.02);
+            --depth-shadow: 0 20px 40px rgba(0,0,0,0.06);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -20,11 +22,11 @@
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
-            line-height: 1.6;
+            line-height: 1.65;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Eszköz-specifikus megjelenítés */
+        /* Eszközkezelés - Maradt a korábbi logika */
         body.device-desktop .m-only { display: none !important; }
         body.device-mobile .d-only { display: none !important; }
 
@@ -32,73 +34,152 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 2rem 4rem;
+            padding: 1.5rem 4rem;
             border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(5px);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             z-index: 100;
         }
 
-        .logo { font-weight: 600; font-size: 0.9rem; letter-spacing: 0.05em; text-transform: uppercase;}
-        .contact-link { color: var(--text-main); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
-        .menu-icon { font-size: 1.5rem; cursor: pointer; }
+        .logo { font-weight: 600; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase;}
+        .contact-link { color: var(--text-main); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: opacity 0.2s; }
+        .contact-link:hover { opacity: 0.6; }
 
         .section-block {
             display: grid;
-            grid-template-columns: 120px 1fr 320px;
+            grid-template-columns: 140px 1fr 340px;
             gap: 60px;
-            padding: 6rem 4rem;
+            padding: 7rem 4rem;
             border-bottom: 1px solid var(--border-color);
             max-width: 1440px;
             margin: 0 auto;
         }
 
-        .col-meta { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.05em; }
-        .col-meta .num { color: var(--text-main); display: block; margin-bottom: 5px; }
-        .col-main { max-width: 750px; }
-        .col-side { font-size: 0.9rem; color: var(--text-muted); }
-
-        h1 { font-size: 3rem; font-weight: 500; line-height: 1.1; margin-bottom: 2rem; letter-spacing: -0.03em; }
-        h2 { font-size: 1.8rem; font-weight: 500; line-height: 1.2; margin-bottom: 1.5rem; }
-        h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
-        p { margin-bottom: 1rem; font-size: 1.05rem; }
+        .col-meta { font-size: 0.7rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
+        .col-meta .num { color: var(--text-main); display: block; margin-bottom: 8px; font-size: 0.8rem; }
         
-        .arrow-down { margin-top: 2rem; font-size: 1.5rem; color: var(--text-muted); }
+        .col-main { max-width: 720px; }
+        
+        h1 { font-size: 3.2rem; font-weight: 500; line-height: 1.05; margin-bottom: 2.5rem; letter-spacing: -0.035em; color: #000; }
+        h2 { font-size: 1.9rem; font-weight: 500; line-height: 1.25; margin-bottom: 1.8rem; letter-spacing: -0.02em; }
+        h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 0.6rem; letter-spacing: -0.01em; }
+        p { margin-bottom: 1.2rem; font-size: 1.05rem; color: #333; }
+
+        .arrow-down { margin-top: 3rem; font-size: 1.8rem; color: #eee; font-weight: 300; }
 
         ul.clean-list { list-style: none; margin-bottom: 1.5rem; }
-        ul.clean-list li { margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem; border-left: 1px solid var(--border-color); padding-left: 1rem; margin-left: 2px; }
-
-        /* Diagram */
-        .diagram-wrapper {
-            position: relative; width: 300px; height: 300px; margin: 0 auto;
-            display: flex; justify-content: center; align-items: center; text-align: center;
+        ul.clean-list li { 
+            margin-bottom: 0.9rem; 
+            padding-left: 1.2rem; 
+            position: relative; 
+            border-left: 2px solid #f0f0f0;
+            transition: border-color 0.3s;
         }
-        .circle { position: absolute; border-radius: 50%; display: flex; justify-content: center; align-items: center; }
-        .circle-1 { width: 100%; height: 100%; border: 1px solid var(--border-color); background: #fff; align-items: flex-start; padding-top: 25px; font-size: 0.8rem; color: var(--text-muted); }
-        .circle-2 { width: 66%; height: 66%; background: #f9f9f9; border: 1px solid #eee; align-items: flex-start; padding-top: 20px; font-size: 0.75rem; }
-        .circle-3 { width: 36%; height: 36%; background: #111; color: #fff; font-weight: 600; font-size: 0.7rem; line-height: 1.2; }
+        ul.clean-list li:hover { border-left-color: #111; }
 
-        /* Cards */
-        .cards-container { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 2rem; }
-        .card { background: var(--accent-bg); padding: 2.5rem 2rem; border-radius: 4px; border: 1px solid #eee; }
-        .card-icon { width: 40px; height: 40px; border: 1px solid #000; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-bottom: 1.5rem; }
+        /* --- Szekció 03: Diagram Fine-tuning --- */
+        .diagram-wrapper {
+            position: relative; width: 320px; height: 320px; margin: 0 auto;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .circle { position: absolute; border-radius: 50%; display: flex; justify-content: center; align-items: center; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .circle-1 { 
+            width: 100%; height: 100%; 
+            border: 1px solid rgba(0,0,0,0.05); 
+            background: linear-gradient(145deg, #ffffff, #f9f9f9); 
+            box-shadow: var(--soft-shadow);
+            align-items: flex-start; padding-top: 30px; font-size: 0.75rem; color: var(--text-muted); 
+        }
+        .circle-2 { 
+            width: 68%; height: 68%; 
+            background: #ffffff; 
+            border: 1px solid rgba(0,0,0,0.03); 
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.02), 0 5px 15px rgba(0,0,0,0.03);
+            align-items: flex-start; padding-top: 25px; font-size: 0.7rem; 
+        }
+        .circle-3 { 
+            width: 38%; height: 38%; 
+            background: #111; color: #fff; 
+            font-weight: 600; font-size: 0.75rem; text-align: center; line-height: 1.3;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
 
-        /* Grid */
-        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 2rem; }
-        .icon-box { padding: 1.5rem 0; border-top: 1px solid var(--border-color); }
+        /* --- Szekció 05: Kártyák --- */
+        .cards-container { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 2.5rem; }
+        .card { 
+            background: var(--accent-bg); 
+            padding: 2.8rem 2.2rem; 
+            border-radius: 12px; 
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+        }
+        .card:hover { 
+            background: #fff;
+            border-color: #000;
+            transform: translateY(-4px);
+            box-shadow: var(--depth-shadow);
+        }
+        .card-icon { 
+            width: 44px; height: 44px; 
+            border: 1px solid #ddd; border-radius: 50%; 
+            display: flex; justify-content: center; align-items: center; 
+            margin-bottom: 1.8rem; font-size: 1.1rem;
+            background: #fff;
+        }
 
-        .highlight-box { padding: 2rem; background: var(--accent-bg); border-left: 2px solid #000; margin-top: 1rem; }
-        .contact-cta { color: var(--text-main); text-decoration: none; font-weight: 600; border-bottom: 1px solid #111; }
+        /* --- Grid sávok --- */
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 2.5rem; }
+        .icon-box { 
+            padding: 2rem 0; 
+            border-top: 1px solid var(--border-color); 
+            transition: border-top-color 0.3s;
+        }
+        .icon-box:hover { border-top-color: #111; }
 
-        @media (max-width: 950px) {
-            header { padding: 1.5rem 2rem; }
-            .section-block { grid-template-columns: 1fr; gap: 20px; padding: 4rem 2rem; }
-            .col-side { margin-top: 20px; }
-            h1 { font-size: 2.4rem; }
+        .highlight-box { 
+            padding: 2.2rem; 
+            background: #fdfdfd; 
+            border: 1px solid var(--border-color);
+            border-left: 3px solid #111; 
+            border-radius: 4px;
+            box-shadow: var(--soft-shadow);
+        }
+
+        .contact-cta-wrapper { display: flex; align-items: center; gap: 24px; }
+        .contact-cta { 
+            color: var(--text-main); 
+            text-decoration: none; 
+            font-weight: 600; 
+            border-bottom: 2px solid #111; 
+            padding-bottom: 4px;
+            transition: all 0.2s;
+        }
+        .contact-cta:hover { color: var(--text-muted); border-bottom-color: var(--text-muted); }
+
+        footer {
+            padding: 5rem 4rem;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            background: #fafafa;
+        }
+
+        /* --- Mobil nézet finomhangolása --- */
+        @media (max-width: 1000px) {
+            header { padding: 1.2rem 2rem; }
+            .section-block { 
+                grid-template-columns: 1fr; 
+                gap: 30px; 
+                padding: 4.5rem 1.5rem; 
+            }
+            h1 { font-size: 2.5rem; margin-bottom: 1.8rem; }
+            h2 { font-size: 1.7rem; }
+            .col-side { margin-top: 20px; font-size: 0.95rem; }
             .cards-container, .grid-3 { grid-template-columns: 1fr; }
-            .diagram-wrapper { width: 260px; height: 260px; }
+            .diagram-wrapper { width: 280px; height: 280px; }
+            footer { padding: 4rem 2rem; }
         }
     </style>
 </head>
@@ -111,9 +192,9 @@
 
     <main>
         <section class="section-block">
-            <div class="col-meta"><span class="num">01</span><span class="label">HOOK</span></div>
+            <div class="col-meta"><span class="num">01</span></div>
             <div class="col-main">
-                <h1>Stabilizing the human state between Artificial Intelligence and Spatial Logic.</h1>
+                <h1>Stabilizing the human state between AI and Spatial Logic.</h1>
                 <p>Artificial Intelligence increases speed. Spatial Logic increases environmental complexity. Human cognition remains the sensitive variable.</p>
                 <div class="arrow-down">↓</div>
             </div>
@@ -121,26 +202,25 @@
         </section>
 
         <section class="section-block">
-            <div class="col-meta"><span class="num">02</span><span class="label">THE PROBLEM</span></div>
+            <div class="col-meta"><span class="num">02</span><span>Problem</span></div>
             <div class="col-main">
                 <h2>Most systems don’t fail where they are measured.</h2>
-                <p>They fail where human decision-making degrades.</p>
+                <p>They fail where human decision-making degrades under pressure.</p>
             </div>
             <div class="col-side">
                 <ul class="clean-list">
                     <li>Increasing validation loops</li>
-                    <li>Slower decisions</li>
-                    <li>Hidden errors</li>
+                    <li>Slower decisions & hidden errors</li>
                     <li>Declining ROI over time</li>
                 </ul>
             </div>
         </section>
 
         <section class="section-block">
-            <div class="col-meta"><span class="num">03</span><span class="label">REFRAMING</span></div>
+            <div class="col-meta"><span class="num">03</span><span>Reframing</span></div>
             <div class="col-main">
-                <h2>This is not a technology problem. This is not a UX problem.</h2>
-                <h2 style="color: var(--text-muted);">This is a missing layer.</h2>
+                <h2>This is not a technology problem.</h2>
+                <h2 style="color: #999;">This is a missing control layer.</h2>
             </div>
             <div class="col-side">
                 <div class="diagram-wrapper">
@@ -152,101 +232,104 @@
         </section>
 
         <section class="section-block">
-            <div class="col-meta"><span class="num">04</span><span class="label">WHAT WE DO</span></div>
+            <div class="col-meta"><span class="num">04</span><span>What we do</span></div>
             <div class="col-main">
-                <h2>We analyze how humans operate inside high-speed, high-complexity systems.</h2>
-                <p>We identify:</p>
+                <h2>We analyze how humans operate inside high-speed systems.</h2>
+                <p>We identify failure points before they become systemic:</p>
                 <ul class="clean-list">
-                    <li>where decisions break</li>
-                    <li>when performance degrades</li>
-                    <li>why systems stop scaling</li>
+                    <li>Decision-making breakdown thresholds</li>
+                    <li>Cognitive performance degradation</li>
+                    <li>Hidden ROI leakages</li>
                 </ul>
             </div>
             <div class="col-side">
                 <div class="highlight-box">
-                    <strong>Not dashboards. Not more data.</strong><br><br>
-                    Clarity on the human factor behind system performance.
+                    <strong style="display:block; margin-bottom:10px;">Beyond Dashboards.</strong>
+                    Actual clarity on the human factor driving your system performance.
                 </div>
             </div>
         </section>
 
         <section class="section-block">
-            <div class="col-meta"><span class="num">05</span><span class="label">SYSTEM STRUCTURE</span></div>
+            <div class="col-meta"><span class="num">05</span><span>Structure</span></div>
             <div class="col-main">
-                <p style="text-transform: uppercase; font-size: 0.75rem; font-weight: 700; margin-bottom: 2rem;">Spatial & Artificial Logic</p>
+                <p style="text-transform: uppercase; font-size: 0.7rem; font-weight: 700; color:#888; margin-bottom: 2rem; letter-spacing:0.1em;">The Logic Architecture</p>
                 <div class="cards-container">
                     <div class="card">
                         <div class="card-icon">⚡</div>
                         <h3>Diagnostic Layer</h3>
-                        <p style="font-size: 0.9rem;">Identifies cognitive breakdown under system pressure.</p>
+                        <p style="font-size: 0.95rem; color: #555;">Identifies real-time cognitive breakdown under system-induced pressure.</p>
                     </div>
                     <div class="card">
                         <div class="card-icon">⬡</div>
                         <h3>Structural Layer</h3>
-                        <p style="font-size: 0.9rem;">Defines how systems should be structured to maintain stability.</p>
+                        <p style="font-size: 0.95rem; color: #555;">Defines environmental parameters to maintain human decision stability.</p>
                     </div>
                 </div>
             </div>
             <div class="col-side">
-                <p style="margin-top: 4rem;">Detection without structure is incomplete. Structure without detection is blind.</p>
+                <p style="margin-top: 5rem; font-style: italic; color: #999; line-height: 1.5;">"Detection without structure is incomplete. Structure without detection is blind."</p>
             </div>
         </section>
 
         <section class="section-block">
-            <div class="col-meta"><span class="num">06</span><span class="label">ENVIRONMENTS</span></div>
+            <div class="col-meta"><span class="num">06</span><span>Environments</span></div>
             <div class="col-main">
-                <h2>We work across environments where complexity meets cognition.</h2>
+                <h2>Bridging complexity and cognition.</h2>
                 <div class="grid-3">
-                    <div class="icon-box"><h3>AI-assisted workflows</h3></div>
-                    <div class="icon-box"><h3>Automation systems</h3></div>
+                    <div class="icon-box"><h3>AI Workflows</h3></div>
+                    <div class="icon-box"><h3>Automation</h3></div>
                     <div class="icon-box"><h3>Spatial Computing</h3></div>
                 </div>
             </div>
             <div class="col-side">
-                <p style="margin-top: 2rem;">Human cognitive limits are not theoretical. They are observable and repeatable.</p>
+                <p style="margin-top: 2rem; font-size: 0.9rem;">Human limits are not theoretical. They are observable, repeatable, and manageable.</p>
             </div>
         </section>
 
         <section class="section-block">
-            <div class="col-meta"><span class="num">07</span><span class="label">ENTRY POINT</span></div>
+            <div class="col-meta"><span class="num">07</span><span>Entry Point</span></div>
             <div class="col-main">
-                <h2>Bring a running system or a completed implementation.</h2>
-                <p>We run a focused analysis. You receive:</p>
+                <h2>Bring a running system.</h2>
+                <p>We provide a focused analysis on the existing implementation. You receive:</p>
                 <ul class="clean-list">
-                    <li>real failure points</li>
-                    <li>cognitive load sources</li>
-                    <li>decision breakdown mapping</li>
+                    <li>Real failure point identification</li>
+                    <li>Cognitive load mapping</li>
+                    <li>Decision breakdown diagnostics</li>
                 </ul>
             </div>
             <div class="col-side">
                 <div class="highlight-box">
-                    <strong>No additional data collection.</strong><br>
-                    <strong>No disruption to existing operations.</strong>
+                    <strong>Zero Disruption.</strong><br>
+                    No additional data collection or operational downtime required.
                 </div>
             </div>
         </section>
 
         <section class="section-block" style="border-bottom: none;">
-            <div class="col-meta"><span class="num">08</span><span class="label">CONTACT</span></div>
+            <div class="col-meta"><span class="num">08</span><span>Contact</span></div>
             <div class="col-main">
-                <div style="display: flex; align-items: center; gap: 20px;">
-                    <div class="card-icon" style="background: #111; color: #fff; margin:0;">✉</div>
+                <div class="contact-cta-wrapper">
+                    <div class="card-icon" style="background: #111; color: #fff; margin:0; border:none; box-shadow: 0 10px 20px rgba(0,0,0,0.15);">✉</div>
                     <div>
-                        <p style="font-weight: 600; margin:0;">Let’s start with a short description.</p>
-                        <a href="mailto:hello@spatiallogic.io" class="contact-cta">Reach out to our team</a>
+                        <p style="font-weight: 600; margin:0; font-size: 1.1rem;">Let’s start with a brief.</p>
+                        <a href="mailto:hello@spatiallogic.io" class="contact-cta">Connect with our team</a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer style="padding: 4rem; text-align: center; border-top: 1px solid #eee; font-size: 0.8rem; color: #999;">
-        <p>© 2025 Spatial Logic</p>
+    <footer>
+        <p style="font-weight: 600; color: #000; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.1em; margin-bottom: 0.5rem;">Spatial & Artificial Logic</p>
+        <p style="font-size: 0.85rem; color: #999;">The human control layer for adaptive systems.</p>
+        <p style="margin-top: 2rem; font-size: 0.75rem; color: #ccc;">© 2026 Spatial Logic</p>
     </footer>
 
     <script>
         function updateDeviceClass() {
             const body = document.body;
+            // 950px az a pont, ahol a 3 oszlop már szűkös
             if (window.innerWidth <= 950) {
                 body.classList.remove('device-desktop');
                 body.classList.add('device-mobile');
